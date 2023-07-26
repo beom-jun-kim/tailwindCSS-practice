@@ -14,5 +14,8 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+
+  // npm i @tailwindcss/forms
+  // Tailwind 플러그인을 사용하면 새 스타일을 등록
+  plugins: [require('@tailwindcss/forms')],
 }

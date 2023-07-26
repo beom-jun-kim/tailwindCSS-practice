@@ -1,6 +1,9 @@
+import Enter from "../app/components/page";
 
 export default function Home() {
   return (
-    <h1>NextJS</h1>
-  )
+    <div>
+      <Enter />
+    </div>
+  );
 }
