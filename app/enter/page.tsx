@@ -57,7 +57,7 @@ export default function Enter() {
               />
             ) : null}
             {method === "phone" ? (
-              <div className="flex items-center border rounded-l-md border-r-0">
+              <div className="flex items-center border rounded-l-md border-r-0 rounded-r-md">
                 <span className="mr-2 px-2 select-none text-gray-400">+82</span>
                 <input
                   type="number"
