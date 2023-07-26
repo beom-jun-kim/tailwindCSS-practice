@@ -1,115 +1,77 @@
-"use client";
+import type { NextPage } from "next";
 
-import React, { useState } from "react";
-
-// ... : 무한한 인자를 담는다
-function cls(...classname: string[]) {
-  // join : 배열의 모든 요소를 연결해 하나의 문자열로
-  return classname.join(" ");
-}
-
-export default function Enter() {
-  const [method, setMethod] = useState<"email" | "phone">("email");
-  const onEmailClick = () => setMethod("email");
-  const onPhoneClick = () => setMethod("phone");
+const Home: NextPage = () => {
   return (
-    <div className="mt-12">
-      <h3 className="text-2xl font-bold text-center">Enter to Carrot</h3>
-      <div className="mt-6">
-        <div className="flex flex-col items-center">
-          <h5 className="text-gray-500">Enter using:</h5>
-          <div className="grid border-b w-full grid-cols-2 gap-16 mt-4">
-            <button
-              className={cls(
-                "pb-4 font-bold border-b-2",
-                method === "email"
-                  ? "border-blue-600 text-blue-600"
-                  : "border-transparent"
-              )}
-              onClick={onEmailClick}
-            >
-              Email
-            </button>
-            <button
-              className={cls(
-                "pb-4 font-bold border-b-2",
-                method === "phone"
-                  ? "border-blue-600 text-blue-600"
-                  : "border-transparent"
-              )}
-              onClick={onPhoneClick}
-            >
-              Phone
-            </button>
-          </div>
-        </div>
-        <form className="mt-8 px-4">
-          <label>
-            {method === "email" ? "Email address" : null}
-            {method === "phone" ? "Phone number" : null}
-          </label>
-          <div className="my-3">
-            {method === "email" ? (
-              <input
-                type="email"
-                className="w-full focus:border-blue-500 rounded-md"
-                required
-              />
-            ) : null}
-            {method === "phone" ? (
-              <div className="flex items-center border rounded-l-md border-r-0">
-                <span className="mr-2 px-2 select-none text-gray-400">+82</span>
-                <input
-                  type="number"
-                  className="border-gray-200 border-y-0 w-full focus:border-blue-500 rounded-r-md"
-                  required
-                />
-              </div>
-            ) : null}
-          </div>
-          <button className="bg-blue-500 w-full py-3 rounded-md text-white">
-            {method === "email" ? "Get login link" : null}
-            {method === "phone" ? "Get one-time password" : null}
-          </button>
-        </form>
-        <div className="mt-5 px-4">
-          <div className="flex items-center">
-            <div className="border w-full h-0" />
-            <div>
-              <span className="px-2 whitespace-nowrap text-gray-400 font-light">
-                Or enter with
-              </span>
+    <div className="flex flex-col space-y-5 py-10 px-5">
+      {[...Array(10)].map((_, i) => (
+        <div key={i} className="flex border-b cursor-pointer justify-between">
+          <div className="flex space-x-4 pb-5">
+            <div className="w-20 h-20 bg-gray-400 rounded-sm" />
+            <div className="flex flex-col justify-center">
+              <h3 className="font-medium text-md">New iPhone 14</h3>
+              <span className="text-gray-500 text-sm block">Black</span>
+              <span className="font-medium text-lg">$95</span>
             </div>
-            <div className="border w-full h-0" />
           </div>
-          <div className="grid grid-cols-2 gap-3 mt-5">
-            <button className="flex justify-center border border-gray-300 rounded-md text-gray-400 hover:text-black py-3">
+          <div className="flex items-end space-x-3 mb-2">
+            
+            {/* svg : https://heroicons.dev/ */}
+            <div className="flex items-center space-x-1">
               <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
-              </svg>
-            </button>
-            <button className="flex justify-center border border-gray-300 rounded-md text-gray-400 hover:text-black py-3">
-              <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fillRule="evenodd"
-                  d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
-                  clipRule="evenodd"
-                />
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
-            </button>
+              <span>1</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                ></path>
+              </svg>
+              <span>1</span>
+            </div>
           </div>
         </div>
-      </div>
+      ))}
+      <button className="fixed hover:bg-blue-300 right-7 bottom-20 bg-blue-500 rounded-full p-4 text-white shadow-lg">
+        <svg
+          className="h-6 w-6"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+          />
+        </svg>
+      </button>
     </div>
   );
-}
+};
+
+export default Home;
