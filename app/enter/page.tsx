@@ -44,13 +44,14 @@ export default function Enter() {
           </div>
         </div>
         <form className="mt-8 px-4">
-          <label>
+          <label htmlFor="input">
             {method === "email" ? "Email address" : null}
             {method === "phone" ? "Phone number" : null}
           </label>
           <div className="my-3">
             {method === "email" ? (
               <input
+                id="input"
                 type="email"
                 className="w-full focus:border-blue-500 rounded-md"
                 required
@@ -60,6 +61,7 @@ export default function Enter() {
               <div className="flex items-center border rounded-l-md border-r-0 rounded-r-md">
                 <span className="mr-2 px-2 select-none text-gray-400">+82</span>
                 <input
+                  id="input"
                   type="number"
                   className="border-gray-200 border-y-0 w-full focus:border-blue-500 rounded-r-md"
                   required
