@@ -1,14 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
+import type { NextPage } from "next";
+import { cls } from "../libs/utils";
 
-// ... : 무한한 인자를 담는다
-function cls(...classname: string[]) {
-  // join : 배열의 모든 요소를 연결해 하나의 문자열로
-  return classname.join(" ");
-}
-
-export default function Enter() {
+const Enter: NextPage = () => {
   const [method, setMethod] = useState<"email" | "phone">("email");
   const onEmailClick = () => setMethod("email");
   const onPhoneClick = () => setMethod("phone");
@@ -114,4 +110,6 @@ export default function Enter() {
       </div>
     </div>
   );
-}
+};
+
+export default Enter;
