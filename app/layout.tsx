@@ -1,7 +1,14 @@
+"use client";
+
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { cls } from "./libs/utils";
+// import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+// import { useRouter } from "next/navigation";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,15 +30,47 @@ export default function RootLayout({
   hasTabBar,
   canGoBack,
 }: LayoutProps) {
+  const router = useRouter();
+  const backButton = () => {
+
+    // router.back() : 브라우저의 뒤로 버튼을 클릭하는 것
+    // router.push() : 클라이언트 측 전환을 처리
+    router.back();
+  };
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="bg-white w-full text-xl font-semibold py-6 fixed text-gray-700 border-0 top-0 left-0 flex items-center justify-center">
+        <div className={cls(!canGoBack ? "justify-center":"","bg-white w-full text-xl font-semibold py-6 fixed text-gray-700 border-0 top-0 left-0 flex items-center border-b")}>
+          {canGoBack ? <button onClick={backButton}>←</button> : null}
           {title ? <span>{title}</span> : null}
         </div>
-        <div className={cls("pt-16", hasTabBar ? "pb-16" : "")}>{children}</div>
+        <div className={(cls("pt-24"), hasTabBar ? "pb-32" : "")}>
+          {children}
+        </div>
         {hasTabBar ? (
-          <nav className="bg-white text-gray-800 border-t fixed bottom-0 pb-10 pt-3 flex justify-between items-center"></nav>
+          <nav className="w-full bg-white text-gray-800 border-t fixed left-0 bottom-0 pb-10 pt-3 flex justify-center items-center">
+            <ul className="max-w-lg w-full flex justify-around items-center">
+              <li className="text-center">
+                <Link href="/">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+                    />
+                  </svg>
+                  <span>홈</span>
+                </Link>
+              </li>
+            </ul>
+          </nav>
         ) : null}
       </body>
     </html>
