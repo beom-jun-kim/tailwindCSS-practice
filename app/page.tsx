@@ -4,7 +4,7 @@ import RootLayout from "./layout";
 const Home: NextPage = () => {
   return (
     <RootLayout title="Home" hasTabBar>
-      <div className="flex flex-col space-y-5 py-10 px-5">
+      <div className="flex flex-col space-y-5 px-5">
         {[...Array(10)].map((_, i) => (
           <div
             key={i}
